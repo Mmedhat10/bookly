@@ -1,3 +1,4 @@
+import 'package:booklyapp/Features/home/presentaion/view/home_view.dart';
 import 'package:booklyapp/core/utils/assets.dart';
 import 'package:flutter/material.dart';
 
@@ -8,16 +9,22 @@ class SplashViewBody extends StatefulWidget {
   State<SplashViewBody> createState() => _SplashViewBodyState();
 }
 
-class _SplashViewBodyState extends State<SplashViewBody> with SingleTickerProviderStateMixin {
+class _SplashViewBodyState extends State<SplashViewBody>
+    with SingleTickerProviderStateMixin {
   late AnimationController animationController;
   late Animation<Offset> slidingAnimation;
 
   initState() {
     super.initState();
     initSlidingAnimation();
+    Future.delayed(const Duration(seconds: 2), () {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const HomeView()),
+      );
+    });
   }
 
- 
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -26,10 +33,9 @@ class _SplashViewBodyState extends State<SplashViewBody> with SingleTickerProvid
       children: [
         SlideTransition(
           position: slidingAnimation,
-          child: Image.asset(AssetsData.logo)),
-        const SizedBox(
-          height: 4,
+          child: Image.asset(AssetsData.logo),
         ),
+        const SizedBox(height: 4),
         SlideTransition(
           position: slidingAnimation,
           child: Text(
@@ -41,8 +47,9 @@ class _SplashViewBodyState extends State<SplashViewBody> with SingleTickerProvid
       ],
     );
   }
-   void initSlidingAnimation() {
-     animationController = AnimationController(
+
+  void initSlidingAnimation() {
+    animationController = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 1),
     );
