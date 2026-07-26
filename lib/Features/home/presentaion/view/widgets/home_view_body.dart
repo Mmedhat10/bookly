@@ -1,5 +1,4 @@
 import 'package:booklyapp/Features/home/presentaion/view/widgets/Custom_appbar.dart';
-import 'package:booklyapp/core/utils/assets.dart';
 import 'package:flutter/material.dart';
 
 import 'Custom_listview_item.dart';
